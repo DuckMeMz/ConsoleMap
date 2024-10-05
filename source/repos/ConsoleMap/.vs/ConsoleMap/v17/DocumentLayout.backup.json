@@ -1,9 +1,9 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\wrfar\\source\\repos\\ConsoleMap\\",
+  "WorkspaceRootPath": "C:\\Users\\wrfar\\source\\repos\\DuckMeMz\\ConsoleMap\\source\\repos\\ConsoleMap\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{300AB79C-3572-42E0-99F6-84C6DF11B588}|ConsoleMap\\ConsoleMap.vcxproj|C:\\Users\\wrfar\\source\\repos\\ConsoleMap\\ConsoleMap\\ConsoleMap.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "AbsoluteMoniker": "D:0:0:{300AB79C-3572-42E0-99F6-84C6DF11B588}|ConsoleMap\\ConsoleMap.vcxproj|C:\\Users\\wrfar\\source\\repos\\DuckMeMz\\ConsoleMap\\source\\repos\\ConsoleMap\\ConsoleMap\\ConsoleMap.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{300AB79C-3572-42E0-99F6-84C6DF11B588}|ConsoleMap\\ConsoleMap.vcxproj|solutionrelative:ConsoleMap\\ConsoleMap.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     }
   ],
@@ -14,24 +14,25 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 0,
           "Children": [
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
-            },
             {
               "$type": "Document",
               "DocumentIndex": 0,
               "Title": "ConsoleMap.cpp",
-              "DocumentMoniker": "C:\\Users\\wrfar\\source\\repos\\ConsoleMap\\ConsoleMap\\ConsoleMap.cpp",
+              "DocumentMoniker": "C:\\Users\\wrfar\\source\\repos\\DuckMeMz\\ConsoleMap\\source\\repos\\ConsoleMap\\ConsoleMap\\ConsoleMap.cpp",
               "RelativeDocumentMoniker": "ConsoleMap\\ConsoleMap.cpp",
-              "ToolTip": "C:\\Users\\wrfar\\source\\repos\\ConsoleMap\\ConsoleMap\\ConsoleMap.cpp",
+              "ToolTip": "C:\\Users\\wrfar\\source\\repos\\DuckMeMz\\ConsoleMap\\source\\repos\\ConsoleMap\\ConsoleMap\\ConsoleMap.cpp",
               "RelativeToolTip": "ConsoleMap\\ConsoleMap.cpp",
-              "ViewState": "AgIAAB8AAAAAAAAAAAA5wDAAAAAWAAAAAAAAAA==",
+              "ViewState": "AgIAACsAAAAAAAAAAAAzwEEAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2024-10-04T10:04:12.299Z",
+              "IsPinned": true,
               "EditorCaption": ""
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
             }
           ]
         }

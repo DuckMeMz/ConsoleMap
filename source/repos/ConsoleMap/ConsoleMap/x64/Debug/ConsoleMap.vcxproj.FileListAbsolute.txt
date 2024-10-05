@@ -1,1 +1,2 @@
 C:\Users\wrfar\source\repos\ConsoleMap\ConsoleMap\x64\Debug\ConsoleMap.exe
+C:\Users\wrfar\source\repos\DuckMeMz\ConsoleMap\source\repos\ConsoleMap\ConsoleMap\x64\Debug\ConsoleMap.exe

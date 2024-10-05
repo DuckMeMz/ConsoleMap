@@ -1,55 +1,66 @@
 ﻿#include <iostream>
 #include <chrono>
+#include <cstdlib>
+#include <ctime> 
 
-//int main() {
-	const int sizeY = 10;
-	const int sizeX = 10;
-	char water = '=';
-	char trees = 'T';
-	char lake = 'O';
-	char land = '#';
-	int amountOfTrees = 0;
-	//const int min = 0;
-	//const int max = 3;
-	char mapSymbols[4] = { water, trees, lake, land };
-	//char map[sizeY][sizeX];
-	
-		
-	//for (int y = 0; y < sizeY; y++) {
-	//	for (int x = 0; x < sizeX; x++) {
-	//		std::cout << map[y][x] << ' ';
-	//	}
-	//	std::cout << std::endl;
-	//}
+const int sizeY = 20;
+const int sizeX = 20;
+char water = '=';
+char tree = 'T';
+char lake = 'O';
+char land = '#';
+int amountOfTrees = 0;
+const int min = 0;
+char mapSymbols[4] = { water, tree, lake, land };
+int max = sizeof(mapSymbols) / sizeof(mapSymbols[0]);
+char map[sizeY][sizeX];
 
-	//	return 0;
-	//}
-
-//bool canPlaceTree()
-//{
-//	return true;
-//}
+bool canSpawnTree(char map[sizeY][sizeX], int y, int x);
+bool canSpawnLake(char map[sizeY][sizeX], int y, int x);
 
 int main() {
-	for (int i = 0; i < sizeY; i++) {
-		std::cout << std::endl;
-		for (int j = 0; j < sizeX; j++) {
-			char chosenChar = mapSymbols[rand() % 4];
-			
-			if (chosenChar == 'T') {
-				++amountOfTrees;
-				chosenChar = mapSymbols[3];
-				continue;
-			}
-			else{
-				std::cout << chosenChar;
-			}
-		}
-	}
-	std::cout << "\n" << amountOfTrees;
+    std::srand(static_cast<int>(std::time(NULL)));
+
+
+    for (int i = 0; i < sizeY; i++) {
+        for (int j = 0; j < sizeX; j++) {
+            char chosenChar = mapSymbols[std::rand() % max];
+            if (chosenChar == tree && !canSpawnTree(map, i, j)) {
+                chosenChar = land;
+            }
+            if (chosenChar == lake && !canSpawnLake(map, i, j)) {
+                chosenChar = land;
+            }
+            map[i][j] = chosenChar;
+        }
+    }
+
+
+    for (int i = 0; i < sizeY; i++) {
+        for (int j = 0; j < sizeX; j++) {
+            std::cout << map[i][j] << ' ';
+        }
+        std::cout << std::endl;
+    }
+    return 0;
 }
 
+bool canSpawnTree(char map[sizeY][sizeX], int y, int x){
+if ((y > 0 && map[y - 1][x] == water) || 
+    (y < sizeY - 1 && map[y + 1][x] == water) || 
+    (x > 0 && map[y][x - 1] == water) || 
+    (x < sizeX - 1 && map[y][x + 1] == water)) { 
+    return false;
+}
+return true;
+}
 
-
-
-
+bool canSpawnLake(char map[sizeY][sizeX], int y, int x) {
+    if ((y > 0 && map[y - 1][x] == water) || 
+        (y < sizeY - 1 && map[y + 1][x] == water) ||
+        (x > 0 && map[y][x - 1] == water) ||
+        (x < sizeX - 1 && map[y][x + 1] == water)) {
+        return false;
+    }
+    return true;
+}
