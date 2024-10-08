@@ -1,3 +1,0 @@
-﻿  ConsoleMap.cpp
-C:\Users\wrfar\source\repos\ConsoleMap\ConsoleMap\ConsoleMap.cpp(6,15): warning C4566: character represented by universal-character-name '\u2248' cannot be represented in the current code page (1252)
-  ConsoleMap.vcxproj -> C:\Users\wrfar\source\repos\ConsoleMap\ConsoleMap\x64\Debug\ConsoleMap.exe
