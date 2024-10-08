@@ -11,6 +11,7 @@ struct Coordinates
 };
 std::vector<Coordinates> searchWholeMap(char charToFind);
 void replaceChar(char replacementChar, Coordinates coords);
+void replaceAllChar(char charToReplace, char replacementChar);
 Coordinates searchMap(char charToFind);
 void printMap();
 
@@ -37,14 +38,10 @@ int main() {
         }
     }
 
-    std::vector<Coordinates> coordsList = searchWholeMap('T');
-    for (const auto& coords : coordsList) {
-        replaceChar('S', coords);
-    }
-
+    replaceAllChar('T', 'S');
+    replaceChar('X', { 1,1 });
     printMap();
 
-    
     return 0;
 }
 
@@ -80,6 +77,19 @@ void replaceChar(char replacementChar, Coordinates coords) {
         std::cerr << "Character Doesn't exist in the map couldn't replace character" << std::endl;
     }
 
+}
+
+void replaceAllChar(char charToReplace, char replacementChar) {
+    std::vector<Coordinates> coordsList = searchWholeMap(charToReplace);
+    for (const auto& coords : coordsList) {
+        if (coords.yCoord < sizeY && coords.yCoord > -1 && coords.xCoord < sizeX && coords.xCoord > -1) {
+            map[coords.yCoord][coords.xCoord] = replacementChar;
+        }
+        else {
+            std::cerr << "Character Doesn't exist in the map couldn't replace character" << std::endl;
+        }
+
+    }
 }
 
 
