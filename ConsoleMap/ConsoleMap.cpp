@@ -2,13 +2,14 @@
 #include <chrono>
 #include <cstdlib>
 #include <ctime>
+#include <vector>
 
 struct Coordinates
 {
     int yCoord;
     int xCoord;
 };
-
+std::vector<Coordinates> searchWholeMap(char charToFind);
 void replaceChar(char replacementChar, Coordinates coords);
 Coordinates searchMap(char charToFind);
 void printMap();
@@ -35,10 +36,12 @@ int main() {
             map[i][j] = chosenChar;
         }
     }
-    //Don't push an invalid character
-    //Work on fix for crash
-    Coordinates coords = searchMap('F');
-    replaceChar('S', coords);
+
+    std::vector<Coordinates> coordsList = searchWholeMap('T');
+    for (const auto& coords : coordsList) {
+        replaceChar('S', coords);
+    }
+
     printMap();
 
     
@@ -56,8 +59,21 @@ Coordinates searchMap(char charToFind) {
     }
 }
 
+std::vector<Coordinates> searchWholeMap(char charToFind) {
+    std::vector<Coordinates> foundCoords;
+    for (int i = 0; i < sizeY; i++) {
+        for (int j = 0; j < sizeX; j++) {
+            if (map[i][j] == charToFind) {
+                Coordinates result = { i, j };
+                foundCoords.push_back(result);
+            }
+        }
+    }
+    return foundCoords;
+}
+
 void replaceChar(char replacementChar, Coordinates coords) {
-    if (coords.yCoord < sizeY && coords.yCoord > 0 && coords.xCoord < sizeX && coords.xCoord > 0) {
+    if (coords.yCoord < sizeY && coords.yCoord > -1 && coords.xCoord < sizeX && coords.xCoord > -1) {
         map[coords.yCoord][coords.xCoord] = replacementChar;
     }
     else {
