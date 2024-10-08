@@ -57,7 +57,13 @@ Coordinates searchMap(char charToFind) {
 }
 
 void replaceChar(char replacementChar, Coordinates coords) {
-    map[coords.yCoord][coords.xCoord] = replacementChar;
+    if (coords.yCoord < sizeY && coords.yCoord > 0 && coords.xCoord < sizeX && coords.xCoord > 0) {
+        map[coords.yCoord][coords.xCoord] = replacementChar;
+    }
+    else {
+        std::cerr << "Character Doesn't exist in the map couldn't replace character" << std::endl;
+    }
+
 }
 
 
