@@ -12,7 +12,7 @@ struct Coordinates
 };
 
 // Function declarations
-void treeWaterRule();
+void treeWaterRule(char replacementChar);
 std::vector<Coordinates> searchWholeMap(char charToFind);
 void replaceChar(char replacementChar, Coordinates coords);
 void replaceAllChar(char charToReplace, char replacementChar);
@@ -45,7 +45,7 @@ int main() {
         }
     }
     
-    treeWaterRule();
+    treeWaterRule('S');
     printMap();
     std::cout << ruleBroken;
 }
@@ -101,15 +101,19 @@ void replaceAllChar(char charToReplace, char replacementChar) {
     }
 }
 
-void treeWaterRule() {
+void treeWaterRule(char replacementChar) {
     for (int i = 0; i < sizeY; i++) {
         for (int j = 0; j < sizeX; j++) {
             if (map[i][j] == tree) {
-                if (i > 0 && map[i + 1][j] == water || //Up
-                    i < sizeY && map[i - 1][j] == water || //Down
+                if (i < sizeY && map[i + 1][j] == water || //Down
+                    i > 0 && map[i - 1][j] == water || //Up
                     j > 0 && map[i][j - 1] == water || //Left
-                    j < sizeX && map[i][j + 1] == water) { // Right
-                    replaceChar(land, { i, j });
+                    j < sizeX && map[i][j + 1] == water || // Right
+                    i > 0 && j < sizeX && map[i - 1][j + 1] || // Top Right 
+                    i < sizeY && j < sizeX && map[i + 1][j + 1] || // Bottom Right
+                    i < sizeY && j > sizeX && map[i + 1][j - 1] || // Bottom Left
+                    i > 0 && j > 0 && map[i - 1][j - 1]){ // Top Left
+                    replaceChar(replacementChar, {i, j});
                 }
             }
         }
