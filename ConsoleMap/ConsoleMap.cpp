@@ -3,6 +3,12 @@
 #include <cstdlib>
 #include <ctime>
 #include <vector>
+#include <random>
+#include <type_traits>
+#include <cassert>
+#include <iterator>
+
+
 
 // Structure to hold coordinates
 struct Coordinates
@@ -18,6 +24,8 @@ void replaceChar(char replacementChar, Coordinates coords);
 void replaceAllChar(char charToReplace, char replacementChar);
 Coordinates searchMap(char charToFind);
 void printMap();
+char randomElementGenerator(float landweight, float waterweight, float lakeweight, float treeweight);
+void randomlyGenerateMap(float landweight, float waterweight, float lakeweight, float treeweight);
 
 // Constants and global variables
 const int sizeY = 20;
@@ -35,21 +43,12 @@ char map[sizeY][sizeX];
 
 int main() {
     // Seed random number generator
-    std::srand(static_cast<int>(std::time(NULL)));
+    std::srand(static_cast<int>(std::time(0)));
 
-    //Randomly Generates Map in "map" 2D array
-    for (int i = 0; i < sizeY; i++) {
-        for (int j = 0; j < sizeX; j++) {
-            char chosenChar = mapSymbols[std::rand() % max];
-            map[i][j] = chosenChar;
-        }
-    }
-    
-    treeWaterRule('S');
+
+    randomlyGenerateMap(0.65f, 0.15f, 0.05f, 0.15f);
     printMap();
-    std::cout << ruleBroken;
 }
-
 // Searches the map for the first occurrence of the input character
 Coordinates searchMap(char charToFind) {
     for (int i = 0; i < sizeY; i++) {
@@ -133,3 +132,41 @@ void printMap() {
     }
 }
 
+char randomElementGenerator(float landweight, float waterweight, float lakeweight, float treeweight)
+{
+    int landweightint = static_cast<int>(landweight * 1000);
+    int waterweightint = static_cast<int>((waterweight * 1000) + landweightint);
+    int lakeweightint = static_cast<int>((lakeweight * 1000) + waterweightint);
+    int treeweightint = static_cast<int>((treeweight * 1000) + lakeweightint);
+    float randomNum = rand() % 1000 + 1;
+    char chosenChar = 'S';
+    if (randomNum <= landweightint  ) { 
+        chosenChar = land;
+    }
+    else if (randomNum > landweightint && randomNum <= waterweightint) {
+        chosenChar = water;
+    }
+    else if (randomNum > waterweightint && randomNum <= lakeweightint) {
+        chosenChar = lake;
+    }
+    else if (randomNum > lakeweightint && randomNum <= treeweightint) {
+
+        chosenChar = tree;
+    }
+    else {
+        std::cout << "MONKE NIPPLES " << randomNum << std::endl;
+        
+    }
+        
+    return chosenChar;
+}
+
+
+void randomlyGenerateMap(float landweight, float waterweight, float lakeweight, float treeweight){
+     for (int i = 0; i < sizeY; i++) {
+        for (int j = 0; j < sizeX; j++) {
+            char mapchosenChar = randomElementGenerator(landweight, waterweight, lakeweight, treeweight);
+            map[i][j] = mapchosenChar;
+        }
+    }
+}
